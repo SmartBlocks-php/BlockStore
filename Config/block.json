@@ -4,6 +4,11 @@
     "types": [
     ],
     "apps": [
-
+        {
+            "name": "BlocksExplorer",
+            "token": "BlocksExplorer",
+            "block_token": "BlockStore",
+            "entry_point": "launchBlocksExplorer"
+        }
     ]
 }
