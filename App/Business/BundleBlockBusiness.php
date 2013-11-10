@@ -42,7 +42,7 @@ class BundleBlockBusiness {
             $block = new BundleBlock();
         }
         else {
-            if ($block->getCreator()->getId() != \User::current_user()) {
+            if ($block->getCreator()->getId() != \User::current_user()->getId()) {
                 throw new UnauthorizedAccessException();
             }
         }
@@ -66,10 +66,11 @@ class BundleBlockBusiness {
         }
         unset($data["creator"]);
 
-        if (isset($data["url"])) {
-            $block->setUrl($data["url"]);
-            unset($data["url"]);
+        if (isset($data["github_url"])) {
+            $block->setGithubUrl($data["github_url"]);
+            unset($data["github_url"]);
         }
+        unset($data['url']);
 
         $block_data = $block->getData();
 

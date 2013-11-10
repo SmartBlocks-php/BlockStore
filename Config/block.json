@@ -2,6 +2,14 @@
     "name": "BlockStore",
     "token": "BlockStore",
     "types": [
+        {
+            "model_name": "BundleBlock",
+            "collection_name": "BundleBlocks",
+            "plural": "bundle_blocks",
+            "ws_origin": "/BlockStore/BundleBlocks",
+            "model_location": "BlockStore/models/BundleBlock",
+            "collection_location": "BlockStore/collections/BundleBlocks"
+        }
     ],
     "apps": [
         {

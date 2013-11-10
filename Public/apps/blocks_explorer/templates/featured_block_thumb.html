@@ -1,0 +1,17 @@
+<h3><%= block.get('name') %></h3>
+
+<div class="logo_container visible-lg visible-xs">
+    <% if (block.get('image_url')) { %>
+    <img src="<%= block.get('image_url') %>"/>
+    <%} else {%>
+    <img src="http://placehold.it/100x100"/>
+    <% } %>
+</div>
+<div class="description">
+    <%= block.get('description') %>
+</div>
+<div class="actions">
+    <a href="javascript:void(0);" class="download_button"><i class="fa fa-download"></i> Download</a>
+    <a href="#BlocksExplorer/show/<%= block.get('id') %>" class="more_info_button"><i class="fa fa-info"></i> More info</a>
+    <a target="_blank" href="<%= block.get('github_url') %>" class="github_button"><i class="fa fa-github"></i> GitHub</a>
+</div>

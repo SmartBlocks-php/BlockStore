@@ -32,7 +32,7 @@ class BundleBlock extends \Model
     /**
      * @Column(type="string")
      */
-    private $url;
+    private $github_url;
 
 
     /**
@@ -157,17 +157,17 @@ class BundleBlock extends \Model
     /**
      * @param string $url
      */
-    public function setUrl($url)
+    public function setGithubUrl($url)
     {
-        $this->url = $url;
+        $this->github_url = $url;
     }
 
     /**
      * @return string
      */
-    public function getUrl()
+    public function getGithubUrl()
     {
-        return $this->url;
+        return $this->github_url;
     }
 
     /**
