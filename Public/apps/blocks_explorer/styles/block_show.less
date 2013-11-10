@@ -1,0 +1,37 @@
+.block_show {
+  width: 80%;
+  margin: auto;
+  height:100%;
+  .pane > div {
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    height: ~"calc(100% - 20px)";
+  }
+
+  .main_pane, .secondary_pane {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .header_row {
+  }
+
+  @media (min-width: 992px)  {
+    .middle_row {
+      height: ~"calc(100% - 200px)";
+    }
+  }
+
+
+  .footer_row {
+    .actions {
+      text-align: right;
+    }
+  }
+
+  .rows > div:nth-of-type(1) {
+    height: 100%;
+
+  }
+}
