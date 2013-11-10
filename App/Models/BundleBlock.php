@@ -196,7 +196,7 @@ class BundleBlock extends \Model
             "id" => $this->id,
             "name" => $this->name,
             "description" => $this->description,
-            "url" => $this->url,
+            "github_url" => $this->github_url,
             "creator" => $this->creator->toArray(),
             "last_updated" => $this->last_updated,
             "created" => $this->created,
