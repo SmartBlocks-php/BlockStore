@@ -9,7 +9,10 @@
 namespace BlockStore;
 
 
-class BuncleBlock extends \Model
+/**
+ * @Entity @Table(name="blockstore_bundle_blocks")
+ */
+class BundleBlock extends \Model
 {
     /**
      * @Id @GeneratedValue(strategy="AUTO") @Column(type="integer")
@@ -33,7 +36,7 @@ class BuncleBlock extends \Model
 
 
     /**
-     * @ManyToOne(targetEntitiy="\User")
+     * @ManyToOne(targetEntity="\User")
      */
     private $creator;
 
@@ -58,13 +61,13 @@ class BuncleBlock extends \Model
      */
     public function __construct()
     {
-        $this->last_updated = new DateTime();
-        $this->created = new DateTime();
+        $this->last_updated = new \DateTime();
+        $this->created = new \DateTime();
         $this->data = json_encode(array());
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -72,7 +75,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $created
+     * @param \DateTime $created
      */
     public function setCreated($created)
     {
@@ -80,7 +83,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -88,7 +91,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $creator
+     * @param \User $creator
      */
     public function setCreator($creator)
     {
@@ -96,7 +99,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return \User
      */
     public function getCreator()
     {
@@ -104,7 +107,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -112,7 +115,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -120,7 +123,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $last_updated
+     * @param \DateTime $last_updated
      */
     public function setLastUpdated($last_updated)
     {
@@ -128,7 +131,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getLastUpdated()
     {
@@ -136,7 +139,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -144,7 +147,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -152,7 +155,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $url
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -160,7 +163,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl()
     {
@@ -168,7 +171,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @param mixed $data
+     * @param array $data
      */
     public function setData($data)
     {
@@ -176,7 +179,7 @@ class BuncleBlock extends \Model
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getData()
     {
@@ -208,4 +211,42 @@ class BuncleBlock extends \Model
 
         return $array;
     }
+
+    //OVERRIDEN
+    /**
+     * @param array $params
+     * @return BundleBlock[]
+     */
+    static function all($params = array())
+    {
+        return parent::all($params);
+    }
+
+    /**
+     * @param Integer $id the id of the block
+     * @return BundleBlock
+     */
+    static function find($id)
+    {
+        return parent::find($id);
+    }
+
+    /**
+     * @param array $where
+     * @return BundleBlock[]
+     */
+    static function where($where = array())
+    {
+        return parent::where($where);
+    }
+
+    /**
+     * @param array $options
+     * @return BundleBlock[]
+     */
+    static function search($options = array())
+    {
+        return parent::search($options);
+    }
+
 } 
