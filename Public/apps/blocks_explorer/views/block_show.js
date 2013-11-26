@@ -31,6 +31,14 @@ define([
         },
         registerEvents: function () {
             var base = this;
+
+            base.$el.find('.nav-tabs a', 'click', function () {
+                var elt = $(this);
+
+                base.$el.find('.tab').hide();
+                base.$el.find('.' + elt.attr('data-target')).show();
+
+            });
         }
     });
 

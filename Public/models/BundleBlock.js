@@ -4,7 +4,8 @@ define([
 ], function (_, Backbone) {
     var Model = Backbone.Model.extend({
         default: {
-
+            name: '',
+            description : ''
         },
         urlRoot: "/BlockStore/Bundleblocks",
         init: function () {

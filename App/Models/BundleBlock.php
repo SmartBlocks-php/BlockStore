@@ -64,6 +64,9 @@ class BundleBlock extends \Model
         $this->last_updated = new \DateTime();
         $this->created = new \DateTime();
         $this->data = json_encode(array());
+        $this->name = "";
+        $this->description = "";
+        $this->github_url = "";
     }
 
     /**

@@ -1,0 +1,27 @@
+<h3>Block edition</h3>
+<div class="info"></div>
+<div class="loader_container">
+    <div class="loader"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+<form role="form" class="form" action="javascript:void(0);">
+    <h4>Common information</h4>
+    <div class="form-group">
+        <label   for="edition_form_block_name">Block name</label>
+        <input class="form-control" id="edition_form_block_name" value="<%= block.get('name') %>" placeholder="Enter the block's name">
+    </div>
+    <div class="form-group">
+        <label  for="edition_form_block_description">Description (markdown)</label>
+        <textarea  class="form-control" rows="3" id="edition_form_block_description"><%= block.get('description') %></textarea>
+    </div>
+    <div class="form-group">
+        <label for="edition_form_block_description">Description of the interface (markdown)</label>
+        <textarea  class="form-control" rows="3" id="edition_form_block_interface"><%= block.get('description') %></textarea>
+    </div>
+    <h4>Custom values</h4>
+    <div class="form-group-container">
+    </div>
+    <a href="javascript:void(0);" class="add_field_button"><i class="fa fa-plus"></i> Add field</a>
+    <div>
+        <button type="submit"  class="btn btn-default">Register block</button>
+    </div>
+</form>

@@ -3,8 +3,10 @@ define([
     'underscore',
     'backbone',
     'text!../templates/main.html',
-    './block_creation'
-], function ($, _, Backbone, blocks_manager_tpl, CreationView) {
+    './block_creation',
+    './block_lister',
+    './block_edition'
+], function ($, _, Backbone, blocks_manager_tpl, CreationView, BlocksLister, EditionView) {
     var View = Backbone.View.extend({
         tagName: "div",
         className: "blocks_manager",
@@ -35,6 +37,20 @@ define([
             var subapp = new CreationView();
             base.setSubapp(subapp);
             subapp.init();
+        },
+        showMyBlocks: function() {
+            var base = this;
+            var lister = new BlocksLister();
+            base.setSubapp(lister);
+            lister.init();
+        },
+        showEdition: function (block) {
+            var base = this;
+            var edition = new EditionView({
+                model: block
+            });
+            base.setSubapp(edition);
+            edition.init();
         }
     });
 

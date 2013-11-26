@@ -25,6 +25,23 @@ define([
         },
         registerEvents: function () {
             var base = this;
+
+            base.$el.delegate("form", "submit", function () {
+                var form = $(this);
+
+                var block = new SmartBlocks.Blocks.BlockStore.Models.BundleBlock();
+                block.set("name", form.find("#creation_form_block_name").val());
+
+
+                SmartBlocks.Blocks.BlockStore.Data.bundle_blocks.add(block);
+                base.$el.find(".loader").show();
+                block.save({}, {
+                    success: function () {
+                        window.location = "#BlocksManager/edit/" + block.get('id');
+                    }
+                });
+            });
+
         }
     });
 

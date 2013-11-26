@@ -38,9 +38,6 @@ define([
 
             app.initRoutes({
                 "": function () {
-                    blocks_manager.showDashboard();
-                },
-                "my_blocks": function () {
                     blocks_manager.showMyBlocks();
                 },
                 "new": function () {
