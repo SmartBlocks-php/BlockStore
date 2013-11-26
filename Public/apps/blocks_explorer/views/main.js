@@ -4,8 +4,9 @@ define([
     'backbone',
     'text!../templates/main.html',
     './blocks_explorer',
-    './block_show'
-], function ($, _, Backbone, main_tpl, BlocksExplorerView, BlockShowView) {
+    './block_show',
+    './block_lister'
+], function ($, _, Backbone, main_tpl, BlocksExplorerView, BlockShowView, BlockLister) {
     var View = Backbone.View.extend({
         tagName: "div",
         className: "blocks_explorer_app",
@@ -25,9 +26,14 @@ define([
         },
         showExplorer: function () {
             var base = this;
-            var explorer = new BlocksExplorerView();
-            base.$el.find(".subapp_container").html(explorer.$el);
-            explorer.init();
+
+//            var explorer = new BlocksExplorerView();
+//            base.$el.find(".subapp_container").html(explorer.$el);
+//            explorer.init();
+            var subapp = new BlockLister();
+            base.$el.find(".subapp_container").html(subapp.$el);
+            subapp.init();
+
         },
         showBlock: function (block) {
             var base = this;

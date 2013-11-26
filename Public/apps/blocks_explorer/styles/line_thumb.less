@@ -1,0 +1,25 @@
+.block_line_thumb {
+  padding: 5px;
+  margin-bottom: 3px;
+  background: rgba(255,255,255,0.5);
+rgba(105, 105, 128, 0.53)
+  .block_name {
+    font-size: 1.1em;
+  }
+
+  .show_description_button {
+    float: right;
+  }
+
+  .description {
+    transition: all 500ms;
+    overflow: hidden;
+    height:0px;
+  }
+
+  &.expanded {
+    .description {
+      height: 200px;
+    }
+  }
+}

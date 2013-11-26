@@ -2,15 +2,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!../templates/block_show.html',
-    'moment'
-], function ($, _, Backbone, block_show_tpl) {
+    'text!../templates/line_thumb.html'
+], function ($, _, Backbone, tpl) {
     var View = Backbone.View.extend({
         tagName: "div",
-        className: "block_show",
+        className: "block_line_thumb",
         initialize: function (obj) {
             var base = this;
-            base.block = obj.model;
+
         },
         init: function () {
             var base = this;
@@ -21,16 +20,16 @@ define([
         render: function () {
             var base = this;
 
-            var template = _.template(block_show_tpl, {
-                block: base.block
+            var template = _.template(tpl, {
+                block: base.model
             });
             base.$el.html(template);
-            var date = base.block.getLastUpdated();
-            base.$el.find(".site_last_update").html(moment(date).fromNow());
-
         },
         registerEvents: function () {
             var base = this;
+            base.$el.delegate(".show_description_button", "click", function () {
+                base.$el.toggleClass("expanded");
+            });
         }
     });
 

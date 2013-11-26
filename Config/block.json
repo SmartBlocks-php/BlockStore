@@ -17,6 +17,12 @@
             "token": "BlocksExplorer",
             "block_token": "BlockStore",
             "entry_point": "launchBlocksExplorer"
+        },
+        {
+            "name": "BlocksManager",
+            "token": "BlocksManager",
+            "block_token": "BlockStore",
+            "entry_point": "launchBlocksManager"
         }
     ]
 }

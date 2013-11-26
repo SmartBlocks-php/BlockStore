@@ -1,0 +1,15 @@
+<a href="#BlocksExplorer/show/<%= block.get('id') %>" class="block_name"><%= block.get('name') %></a>
+
+<% if (block.get('short_description')) { %>
+
+<span class="short_description"><%= block.get('short_description') %></span>
+
+<% } %>
+<a href="javascript:void(0);" class="show_description_button">More info<i class="fa fa-arrow-down"></i></a>
+<div class="description">
+    <h2>Description of this block</h2>
+
+    <p>
+        <%= block.get('description') %>
+    </p>
+</div>
