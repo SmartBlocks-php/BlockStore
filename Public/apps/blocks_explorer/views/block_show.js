@@ -22,7 +22,8 @@ define([
             var base = this;
 
             var template = _.template(block_show_tpl, {
-                block: base.block
+                block: base.block,
+                developer: base.block.getCreator().get('id') == SmartBlocks.current_user.get('id')
             });
             base.$el.html(template);
             var date = base.block.getLastUpdated();
@@ -32,12 +33,10 @@ define([
         registerEvents: function () {
             var base = this;
 
-            base.$el.find('.nav-tabs a', 'click', function () {
+            base.$el.delegate('.nav-tabs a', 'click', function () {
                 var elt = $(this);
-
                 base.$el.find('.tab').hide();
-                base.$el.find('.' + elt.attr('data-target')).show();
-
+                base.$el.find('.tab.' + elt.attr('data-target')).show();
             });
         }
     });

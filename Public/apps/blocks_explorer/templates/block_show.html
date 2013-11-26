@@ -1,65 +1,43 @@
-<div class="rows header_row">
-    <div class="block_show_header pane col-md-12">
-        <div>
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#BlocksExplorer">BlocksExplorer</a></li>
-                <li class="active">Block : <%= block.get('name') %></li>
-            </ol>
-        </div>
-    </div>
-    <div class="clearer"></div>
-</div>
 <div class="rows middle_row">
-    <div class="col-md-8 pane main_pane">
+    <div class="col-md-12 pane main_pane">
         <div>
             <h1 class="block_name">
                 <%= block.get('name') %>
             </h1>
+            <% if (developer) { %>
+            <a href="#BlocksManager/edit/<%= block.get('id') %>"><i class="fa fa-edit"></i> Edit this block</a>
+            <% } %>
             <div class="getting_started">
                 <%= block.get('getting_started') %>
             </div>
             <ul class="nav nav-tabs">
-                <li><a href="javascript:void(0);" data-target="description">Description</a></li>
-                <li><a href="javascript:void(0);" data-target="interface_description">Profile</a></li>
+                <li><a href="javascript:void(0);" data-target="description">Description of the block</a></li>
+                <li><a href="javascript:void(0);" data-target="interface_description">Public interface</a></li>
             </ul>
             <div class="description tab enabled">
-                <%= block.get('description') %>
+                <%= SmartBlocks.Blocks.Markdown.Main.convertToHTML(block.get('description')) %>
             </div>
             <div class="interface_description tab">
-                The interface
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 pane secondary_pane">
-        <div>
-            <div class="download_activity">
-
-            </div>
-            <div class="developer_info">
-                <div>
-                    Information updated <span class="site_last_update"></span>
-                </div>
-            </div>
-            <div class="github_activity">
-                <div>
-                    Latest activity on code : <span class="git_last_update"></span>
-                </div>
+                <%= SmartBlocks.Blocks.Markdown.Main.convertToHTML(block.get('interface_description')) %>
             </div>
         </div>
     </div>
     <div class="clearer"></div>
 </div>
+<% if (block.get('github_url') || block.get('release_link')) { %>
 <div class="rows footer_row">
     <div class="block_show_footer actions pane col-md-12">
         <div>
+            <% if (block.get('github_url')) { %>
             <a href="<%= block.get('github_url') %>" target="_blank" class="pure-button"><i class="fa fa-github"></i>
                 See on GitHub</a>
-            <% if (block.get('releaselink')) {%>
-            <a href="<%= block.get('releaselink') %>" class="pure-button download_button"><i class="fa fa-download"></i> Download
+            <% } %>
+            <% if (block.get('release_link')) {%>
+            <a href="<%= block.get('release_link') %>" class="pure-button download_button"><i class="fa fa-download"></i> Download
                 latest release (<span class="version"><%= block.get('current_version') %></span>)</a>
             <% } %>
         </div>
     </div>
     <div class="clearer"></div>
 </div>
+<% } %>

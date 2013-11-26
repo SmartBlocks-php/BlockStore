@@ -4,18 +4,24 @@
     <div class="loader"><i class="fa fa-spinner fa-spin"></i></div>
 </div>
 <form role="form" class="form" action="javascript:void(0);">
+    <div>
+        <button type="submit"  class="btn btn-default">Register block</button>
+        <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
+    </div>
     <h4>Common information</h4>
     <div class="form-group">
         <label   for="edition_form_block_name">Block name</label>
         <input class="form-control" id="edition_form_block_name" value="<%= block.get('name') %>" placeholder="Enter the block's name">
     </div>
-    <div class="form-group">
-        <label  for="edition_form_block_description">Description (markdown)</label>
-        <textarea  class="form-control" rows="3" id="edition_form_block_description"><%= block.get('description') %></textarea>
+    <div class="form-group description_container">
+        <label>Description (markdown)</label>
+        <div class="description_editor_container"></div>
+        <!--<textarea  class="form-control" rows="20" id="edition_form_block_description"><%= block.get('description') %></textarea>-->
     </div>
-    <div class="form-group">
-        <label for="edition_form_block_description">Description of the interface (markdown)</label>
-        <textarea  class="form-control" rows="3" id="edition_form_block_interface"><%= block.get('description') %></textarea>
+    <div class="form-group description_container">
+        <label>Description of the interface (markdown)</label>
+        <div class="interface_editor_container"></div>
+        <!--<textarea  class="form-control" rows="20" id="edition_form_block_interface"><%= block.get('interface_description') %></textarea>-->
     </div>
     <h4>Custom values</h4>
     <div class="form-group-container">

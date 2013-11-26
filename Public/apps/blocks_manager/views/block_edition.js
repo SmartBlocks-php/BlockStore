@@ -24,6 +24,20 @@ define([
                 block: base.model
             });
             base.$el.html(template);
+
+            base.description_editor = SmartBlocks.Blocks.Markdown.Main.getEditor();
+            base.interface_editor = SmartBlocks.Blocks.Markdown.Main.getEditor();
+
+            base.description_editor.init();
+            base.interface_editor.init();
+
+            base.$el.find(".description_editor_container").html(base.description_editor.$el);
+            base.$el.find(".interface_editor_container").html(base.interface_editor.$el);
+
+            base.description_editor.setContent(base.model.get('description'));
+            base.interface_editor.setContent(base.model.get('interface_description'));
+
+
             base.setUpFields();
         },
         setUpFields: function () {
@@ -31,7 +45,7 @@ define([
             var container = $('.btn btn-default');
             for (var k in base.model.attributes) {
                 var attribute = base.model.attributes[k];
-                if (k != 'name' && k != 'description' && k != 'id' && k !== "creator" && k != "github_url" && typeof attribute === "string") {
+                if (k != 'name' && k != 'description' && k != 'id' && k !== "creator" &&  k != 'interface_description' &&k != "github_url" && typeof attribute === "string") {
                     base.addField(k, attribute);
                 }
             }
@@ -75,8 +89,8 @@ define([
                 var form = $(this);
 
                 base.model.set('name', form.find('#edition_form_block_name').val());
-                base.model.set('description', form.find('#edition_form_block_name').val());
-                base.model.set('interface_description', form.find("#edition_form_block_interface").val());
+                base.model.set('description', base.description_editor.getMarkdown());
+                base.model.set('interface_description', base.interface_editor.getMarkdown());
 
                 var field_container = base.$el.find('.form-group-container');
                 field_container.find('.form-group').each(function () {

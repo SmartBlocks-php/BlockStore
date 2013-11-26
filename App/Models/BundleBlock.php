@@ -29,11 +29,6 @@ class BundleBlock extends \Model
      */
     private $description;
 
-    /**
-     * @Column(type="string")
-     */
-    private $github_url;
-
 
     /**
      * @ManyToOne(targetEntity="\User")
@@ -158,22 +153,6 @@ class BundleBlock extends \Model
     }
 
     /**
-     * @param string $url
-     */
-    public function setGithubUrl($url)
-    {
-        $this->github_url = $url;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGithubUrl()
-    {
-        return $this->github_url;
-    }
-
-    /**
      * @param array $data
      */
     public function setData($data)
@@ -199,7 +178,6 @@ class BundleBlock extends \Model
             "id" => $this->id,
             "name" => $this->name,
             "description" => $this->description,
-            "github_url" => $this->github_url,
             "creator" => $this->creator->toArray(),
             "last_updated" => $this->last_updated,
             "created" => $this->created,

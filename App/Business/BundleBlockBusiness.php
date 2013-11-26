@@ -66,10 +66,6 @@ class BundleBlockBusiness {
         }
         unset($data["creator"]);
 
-        if (isset($data["github_url"])) {
-            $block->setGithubUrl($data["github_url"]);
-            unset($data["github_url"]);
-        }
         unset($data['url']);
 
         $block_data = $block->getData();
