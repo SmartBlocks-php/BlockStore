@@ -1,17 +1,22 @@
 <div class="rows middle_row">
     <div class="col-md-12 pane main_pane">
         <div>
+            <% if (developer) { %>
+            <div class="developer_button">
+                <a href="#BlocksManager/edit/<%= block.get('id') %>"><i class="fa fa-edit"></i> Edit this block</a>
+            </div>
+            <% } %>
+            <a href="#BlocksExplorer"><i class="fa fa-arrow-left"></i> Back to Blocks Store</a>
+
             <h1 class="block_name">
                 <%= block.get('name') %>
             </h1>
-            <% if (developer) { %>
-            <a href="#BlocksManager/edit/<%= block.get('id') %>"><i class="fa fa-edit"></i> Edit this block</a>
-            <% } %>
+
             <div class="getting_started">
                 <%= block.get('getting_started') %>
             </div>
             <ul class="nav nav-tabs">
-                <li><a href="javascript:void(0);" data-target="description">Description of the block</a></li>
+                <li><a href="javascript:void(0);" data-target="description" class="selected">Description of the block</a></li>
                 <li><a href="javascript:void(0);" data-target="interface_description">Public interface</a></li>
             </ul>
             <div class="description tab enabled">
@@ -33,7 +38,8 @@
                 See on GitHub</a>
             <% } %>
             <% if (block.get('release_link')) {%>
-            <a href="<%= block.get('release_link') %>" class="pure-button download_button"><i class="fa fa-download"></i> Download
+            <a href="<%= block.get('release_link') %>" class="pure-button download_button"><i
+                    class="fa fa-download"></i> Download
                 latest release (<span class="version"><%= block.get('current_version') %></span>)</a>
             <% } %>
         </div>

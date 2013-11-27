@@ -37,6 +37,8 @@ define([
                 var elt = $(this);
                 base.$el.find('.tab').hide();
                 base.$el.find('.tab.' + elt.attr('data-target')).show();
+                base.$el.find('.nav a').removeClass("selected");
+                elt.addClass('selected');
             });
         }
     });
