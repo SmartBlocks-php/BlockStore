@@ -1,10 +1,10 @@
 .block_line_thumb {
-  padding: 5px;
+  padding: 15px;
   margin-bottom: 3px;
   background: rgba(255,255,255,0.5);
-rgba(105, 105, 128, 0.53)
+  transition: background 500ms;
   .block_name {
-    font-size: 1.1em;
+    font-size: 1.3em;
   }
 
   .show_description_button {
@@ -12,14 +12,19 @@ rgba(105, 105, 128, 0.53)
   }
 
   .description {
-    transition: all 500ms;
+
     overflow: hidden;
-    height:0px;
+    display: none;
+    a {
+      color: #000000;
+      text-decoration: none;
+    }
+    .actions {
+      float: right;
+    }
   }
 
   &.expanded {
-    .description {
-      height: 200px;
-    }
+    background: white;
   }
 }

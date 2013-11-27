@@ -6,10 +6,15 @@
 
 <% } %>
 <a href="javascript:void(0);" class="show_description_button">More info<i class="fa fa-arrow-down"></i></a>
-<div class="description">
-    <h2>Description of this block</h2>
+<div class="description markdown_exported">
+    <%= SmartBlocks.Blocks.Markdown.Main.convertToHTML(block.get('description')) %>
 
-    <p>
-        <%= block.get('description') %>
-    </p>
+    <div class="actions">
+
+        <a href="#BlocksExplorer/show/<%= block.get('id') %>" class="btn btn-default"><i class="fa fa-eye"></i> Block page</a>
+        <% if (block.get('github_url')) {%>
+        <a href="<%= block.get('github_url') %>" class="btn btn-default"><i class="fa fa-github"></i> <%= block.get('name') %> on GitHub</a>
+        <% }%>
+    </div>
+    <div class="clearer"></div>
 </div>

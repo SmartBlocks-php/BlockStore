@@ -28,7 +28,15 @@ define([
         registerEvents: function () {
             var base = this;
             base.$el.delegate(".show_description_button", "click", function () {
-                base.$el.toggleClass("expanded");
+                if (base.$el.find(".description").is(":visible")) {
+                    base.$el.find(".description").slideUp(500);
+                    base.$el.removeClass("expanded");
+                } else {
+                    base.$el.parent().parent().find(".description").hide();
+                    base.$el.parent().parent().find(".block_line_thumb").removeClass("expanded");
+                    base.$el.find(".description").slideDown(500);
+                    base.$el.addClass("expanded");
+                }
             });
         }
     });
