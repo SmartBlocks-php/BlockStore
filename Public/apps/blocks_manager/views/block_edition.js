@@ -134,7 +134,7 @@ define([
                     elt.find(".solid_key").html(key);
                     elt.find(".solid_key").show();
                 }
-            })
+            });
 
 
         }

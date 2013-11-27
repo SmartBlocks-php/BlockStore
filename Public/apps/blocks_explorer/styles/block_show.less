@@ -1,10 +1,11 @@
 .block_show {
-  width: 100%;
+  max-width: 1000px;
   margin: auto;
   height:100%;
 
   .block_name {
     margin-top: 0px;
+    float: left;
   }
 
   .developer_button {
@@ -12,7 +13,7 @@
   }
 
   .pane > div {
-    margin: 10px;
+
     background: rgba(255, 255, 255, 0.5);
     padding: 10px;
     height: ~"calc(100% - 20px)";
@@ -58,6 +59,8 @@
     &.enabled {
       display: block;
     }
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
   }
 
   .nav a.selected {

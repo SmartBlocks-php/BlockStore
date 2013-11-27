@@ -1,16 +1,18 @@
+<h1 class="block_name">
+    <%= block.get('name') %>
+</h1>
 <div class="rows middle_row">
     <div class="col-md-12 pane main_pane">
         <div>
+
+
+            <a href="#BlocksExplorer"><i class="fa fa-arrow-left"></i> Back to Blocks Store</a>
+            &nbsp;
             <% if (developer) { %>
             <div class="developer_button">
                 <a href="#BlocksManager/edit/<%= block.get('id') %>"><i class="fa fa-edit"></i> Edit this block</a>
             </div>
             <% } %>
-            <a href="#BlocksExplorer"><i class="fa fa-arrow-left"></i> Back to Blocks Store</a>
-
-            <h1 class="block_name">
-                <%= block.get('name') %>
-            </h1>
 
             <div class="getting_started">
                 <%= block.get('getting_started') %>

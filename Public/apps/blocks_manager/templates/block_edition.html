@@ -1,33 +1,50 @@
-<h3>Block edition</h3>
-<div class="info"></div>
+<h3 class="title">Block edition</h3>
+
 <div class="loader_container">
-    <div class="loader"><i class="fa fa-spinner fa-spin"></i></div>
+
+    <span class="loader"><i class="fa fa-spinner fa-spin"></i></span>
+    <span class="info"></span>
 </div>
 <form role="form" class="form" action="javascript:void(0);">
-    <div>
-        <button type="submit"  class="btn btn-default">Register block</button>
-        <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
+    <div class="actions_top">
+        <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> Save block</button>
+        <div>
+            <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
+        </div>
     </div>
     <h4>Common information</h4>
+
     <div class="form-group">
-        <label   for="edition_form_block_name">Block name</label>
-        <input class="form-control" id="edition_form_block_name" value="<%= block.get('name') %>" placeholder="Enter the block's name">
+        <label for="edition_form_block_name">Block name</label>
+        <input class="form-control" id="edition_form_block_name" value="<%= block.get('name') %>"
+               placeholder="Enter the block's name">
     </div>
     <div class="form-group description_container">
         <label>Description (markdown)</label>
+
         <div class="description_editor_container"></div>
         <!--<textarea  class="form-control" rows="20" id="edition_form_block_description"><%= block.get('description') %></textarea>-->
     </div>
     <div class="form-group description_container">
         <label>Description of the interface (markdown)</label>
+
         <div class="interface_editor_container"></div>
         <!--<textarea  class="form-control" rows="20" id="edition_form_block_interface"><%= block.get('interface_description') %></textarea>-->
     </div>
     <h4>Custom values</h4>
+
     <div class="form-group-container">
     </div>
     <a href="javascript:void(0);" class="add_field_button"><i class="fa fa-plus"></i> Add field</a>
-    <div>
-        <button type="submit"  class="btn btn-default">Register block</button>
+    <div class="loader_container">
+
+        <span class="loader"><i class="fa fa-spinner fa-spin"></i></span>
+        <span class="info"></span>
+    </div>
+    <div class="actions_top">
+        <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> Save block</button>
+        <div>
+            <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
+        </div>
     </div>
 </form>

@@ -1,18 +1,22 @@
 .block_edition {
+  width: 1000px;
+  margin: auto;
+
+  .title {
+    float:right;
+  }
+
   .info {
     display: none;
   }
   .loader_container {
-    height: 30px;
+    height: 33px;
     .loader {
       display: none;
     }
   }
   form {
-    width: ~"calc(100% - 100px)";
-    margin: auto;
-
-    .custom_field {
+      .custom_field {
       display: block;
       .solid_key {
         display: none;
@@ -23,5 +27,10 @@
     > div {
       height: 400px;
     }
+  }
+
+  .actions_top {
+    float: right;
+    text-align: right;
   }
 }
