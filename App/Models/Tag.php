@@ -20,7 +20,7 @@ class Tag extends \Model {
     private $name;
 
     /**
-     * @ManyToMany(targetEntity="\BlockStore\BundleBlock")
+     * @ManyToMany(targetEntity="\BlockStore\BundleBlock", mappedBy="tags")
      */
     private $bundle_blocks;
 

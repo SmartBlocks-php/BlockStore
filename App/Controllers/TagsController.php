@@ -12,7 +12,7 @@ class TagsController extends \Controller {
 
         $qb = $em->createQueryBuilder();
 
-        $qb->select("t")->from('\BlockStore\Tag', 't')->leftJoin('t.bundle_blocks', 'block')->where('block is NOT NULL');
+        $qb->select("t")->from('\BlockStore\Tag', 't')->join('t.bundle_blocks', 'block');
 
         $results = $qb->getQuery()->getResult();
 
@@ -36,14 +36,32 @@ class TagsController extends \Controller {
     }
     
     public function create($params = array()) {
-        $this->render_layout = false;
+        $data = $this->getRequestData();
+        if (\User::current_user()->logged_in()) {
+            $tag = TagsBusiness::createOrUpdate($data);
+            $this->return_json($tag);
+        } else {
+            $this->json_error('You cannot add tags as anonymous', 403);
+        }
     }
     
     public function update($params = array()) {
-        $this->render_layout = false;
+        $data = $this->getRequestData();
+        if (\User::current_user()->logged_in() && \User::current_user()->is_admin()) {
+            $tag = TagsBusiness::createOrUpdate($data);
+            $this->return_json($tag);
+        } else {
+            $this->json_error('This tag was not found', 404);
+        }
     }
     
     public function destroy($params = array()) {
-        $this->render_layout = false;
+        $tag = \BlockStore\Tag::find($params['id']);
+        if (\User::current_user()->logged_in() && \User::current_user()->is_admin() && is_object($tag)) {
+            $tag->delete();
+            $this->json_message('The tag was succesfully deleted');
+        } else {
+            $this->json_error('This tag was not found', 404);
+        }
     }
 }

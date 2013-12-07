@@ -5,13 +5,14 @@
     <span class="loader"><i class="fa fa-spinner fa-spin"></i></span>
     <span class="info"></span>
 </div>
-<form role="form" class="form" action="javascript:void(0);">
-    <div class="actions_top">
-        <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> Save block</button>
-        <div>
-            <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
-        </div>
+<div class="actions_top">
+    <button class="btn btn-default submit"><i class="fa fa-save"></i> Save block</button>
+    <div>
+        <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
     </div>
+</div>
+<form role="form" class="form" action="javascript:void(0);">
+
     <h4>Common information</h4>
 
     <div class="form-group">
@@ -31,6 +32,22 @@
         <div class="interface_editor_container"></div>
         <!--<textarea  class="form-control" rows="20" id="edition_form_block_interface"><%= block.get('interface_description') %></textarea>-->
     </div>
+
+    <h4>Tags</h4>
+    <div class="form-group">
+
+        <a href="javascript:void(0);" class="add_tag_button"><i class="fa fa-plus"></i></a>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+            <input type="text" class="form-control tag_input" placeholder="Add a tag">
+        </div>
+
+        <div class="tags_list">
+
+        </div>
+        <div class="clearer"></div>
+    </div>
+
     <h4>Custom values</h4>
 
     <div class="form-group-container">
@@ -41,10 +58,11 @@
         <span class="loader"><i class="fa fa-spinner fa-spin"></i></span>
         <span class="info"></span>
     </div>
-    <div class="actions_top">
-        <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> Save block</button>
-        <div>
-            <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
-        </div>
-    </div>
+
 </form>
+<div class="actions_top">
+    <button class="btn btn-default submit"><i class="fa fa-save"></i> Save block</button>
+    <div>
+        <a href="#BlocksExplorer/show/<%= block.get('id') %>"><i class="fa fa-eye"></i> See this block's page</a>
+    </div>
+</div>

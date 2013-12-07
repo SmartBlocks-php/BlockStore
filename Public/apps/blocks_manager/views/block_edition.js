@@ -3,8 +3,10 @@ define([
     'underscore',
     'backbone',
     'text!../templates/block_edition.html',
-    'text!../templates/custom_field_inputs.html'
-], function ($, _, Backbone, tpl, custom_f_tpl) {
+    'text!../templates/custom_field_inputs.html',
+    './tag_thumb'
+], function ($, _, Backbone, tpl, custom_f_tpl, TagThumb) {
+    var Tag = SmartBlocks.Blocks.BlockStore.Models.Tag;
     var View = Backbone.View.extend({
         tagName: "div",
         className: "block_edition",
@@ -39,6 +41,40 @@ define([
 
 
             base.setUpFields();
+            base.renderTags();
+        },
+        renderTags: function () {
+            var base = this;
+
+            var tags = base.model.getTags();
+
+            base.$el.find(".tags_list").html('');
+            for (var k in tags.models) {
+                var tag = tags.models[k];
+                (function (tag) {
+                    var tag_thumb = new TagThumb({
+                        model: tag
+                    });
+                    base.$el.find(".tags_list").append(tag_thumb.$el);
+                    tag_thumb.init();
+                    tag_thumb.setAction('<i class="fa fa-minus"></i> Remove', function () {
+                        base.model.removeTag(tag.get('name'));
+                        base.renderTags();
+                    });
+
+                })(tag);
+
+            }
+        },
+        addTag: function () {
+            var base = this;
+            var input = base.$el.find(".tag_input");
+            var name = input.val();
+            if (name != '') {
+                base.model.addTag(name);
+                input.val("");
+                base.renderTags();
+            }
         },
         setUpFields: function () {
             var base = this;
@@ -85,9 +121,8 @@ define([
         registerEvents: function () {
             var base = this;
 
-            base.$el.delegate("form", 'submit', function () {
+            base.$el.delegate(".submit", 'click', function () {
                 var form = $(this);
-
                 base.model.set('name', form.find('#edition_form_block_name').val());
                 base.model.set('description', base.description_editor.getMarkdown());
                 base.model.set('interface_description', base.interface_editor.getMarkdown());
@@ -133,6 +168,16 @@ define([
                     elt.find(".custom_field_key").hide();
                     elt.find(".solid_key").html(key);
                     elt.find(".solid_key").show();
+                }
+            });
+
+            base.$el.delegate('.add_tag_button', 'click', function () {
+                base.addTag();
+            });
+
+            base.$el.delegate('.tag_input', 'keyup', function (e) {
+                if (e.keyCode == 13) {
+                    base.addTag();
                 }
             });
 

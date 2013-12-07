@@ -1,0 +1,23 @@
+.tag_thumb {
+  display: block;
+  padding: 10px;
+  background: #d3d3d3;
+  min-width: 100px;
+  text-align: center;
+
+  .action {
+    display: none;
+  }
+
+  &.actionable {
+    cursor: pointer;
+    &:hover {
+      .normal {
+        display: none;
+      }
+      .action {
+        display: inline;
+      }
+    }
+  }
+}

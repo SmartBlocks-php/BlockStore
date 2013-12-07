@@ -18,7 +18,6 @@ define([
             var base = this;
 
 
-
             base.render();
             base.launchSearch();
             base.registerEvents();
@@ -32,7 +31,7 @@ define([
             }
 
             base.blocks_list = SmartBlocks.Blocks.BlockStore.Data.bundle_blocks.filter(function (block) {
-                return search_bar.val() === "" || _.some(block.attributes, function (a) {
+                return (!base.selected_tag || block.hasTag(base.selected_tag)) && (search_bar.val() === "" || _.some(block.attributes, function (a) {
                     var words_array = search_bar.val().split(/\s/);
                     console.log(words_array);
                     var value_found = false;
@@ -40,16 +39,14 @@ define([
                         if (typeof  a === "string") {
                             value_found = value_found || a.toLowerCase().indexOf(words_array[k].toLowerCase()) !== -1;
                         }
-
                     }
                     return value_found;
-                });
+                }));
             });
             base.page_count = Math.ceil(base.blocks_list.length / base.page_size);
             var blocks = _.rest(base.blocks_list, (base.current_page - 1) * base.page_size);
-            console.log(blocks);
+
             blocks = _.first(blocks, base.page_size);
-            console.log(blocks);
 
             //pager buttons :
             var pager = base.$el.find(".pagination");
@@ -64,7 +61,8 @@ define([
                 var li = $(document.createElement('li'));
                 li.html(a);
                 pager.find(".next_page_button").parent().before(li);
-            };
+            }
+            ;
 
 
             base.$el.find(".list").html("");
@@ -85,7 +83,23 @@ define([
 
             var t = _.template(template, {});
             base.$el.html(t);
-
+            base.renderTags();
+        },
+        renderTags: function () {
+            var base = this;
+            var tags = SmartBlocks.Blocks.BlockStore.Data.tags.filter(function (tag) {
+                return SmartBlocks.Blocks.BlockStore.Data.bundle_blocks.find(function (block) {
+                    return block.hasTag(tag);
+                }) !== undefined;
+            });
+            base.$el.find('.tags_list').html('');
+            for (var k in tags) {
+                var tag = tags[k];
+                base.$el.find('.tags_list').append('<li><a href="javascript:void(0);" ' +
+                    'class="filter_by_tag_button" ' +
+                    'data-id="' + tag.get('id') + '">' + tag.get('name') + '</a></li>');
+            }
+            console.log("added filters", tags);
         },
         registerEvents: function () {
             var base = this;
@@ -109,6 +123,22 @@ define([
 
             base.$el.delegate('.next_page_button', 'click', function () {
                 base.launchSearch(base.current_page + 1);
+            });
+
+            base.$el.delegate('.filter_by_tag_button', 'click', function () {
+                var $elt = $(this);
+                var id = $elt.attr('data-id');
+                var tag = SmartBlocks.Blocks.BlockStore.Data.tags.get(id);
+                if (tag && (!base.selected_tag || base.selected_tag.get('id') != tag.get('id'))) {
+                    base.$el.find('.selected').removeClass('selected');
+                    $elt.parent().addClass('selected');
+                    base.selected_tag = tag;
+                    base.launchSearch();
+                } else {
+                    base.$el.find('.selected').removeClass('selected');
+                    base.selected_tag = undefined;
+                    base.launchSearch();
+                }
             });
         }
     });
