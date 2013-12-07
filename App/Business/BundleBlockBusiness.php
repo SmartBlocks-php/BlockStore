@@ -68,6 +68,25 @@ class BundleBlockBusiness {
 
         unset($data['url']);
 
+        if (isset($data["tags"])) {
+            if (is_array($data["tags"])) {
+                $block->getTags()->clear();
+                foreach ($data["tags"] as $tagarray) {
+                    $tag = null;
+                    if (isset($tagarray['id'])) {
+                        $tag = \BlockStore\Tag::find($tagarray['id']);
+                    }
+                    if (!is_object($tag)) {
+                        $tag = new \BlockStore\Tag();
+                        $tag->setName($tagarray['name']);
+                        $tag->save();
+                    }
+                    $block->getTags()->add($tag);
+                }
+            }
+            unset($data["tags"]);
+        }
+
         $block_data = $block->getData();
 
         foreach ($data as $k => $v) {

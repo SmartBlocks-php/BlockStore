@@ -8,12 +8,10 @@
 
 namespace BlockStore;
 
-
 /**
  * @Entity @Table(name="blockstore_bundle_blocks")
  */
-class BundleBlock extends \Model
-{
+class BundleBlock extends \Model {
     /**
      * @Id @GeneratedValue(strategy="AUTO") @Column(type="integer")
      */
@@ -28,7 +26,6 @@ class BundleBlock extends \Model
      * @Column(type="text")
      */
     private $description;
-
 
     /**
      * @ManyToOne(targetEntity="\User")
@@ -50,130 +47,132 @@ class BundleBlock extends \Model
      */
     private $data;
 
+    /**
+     * @ManyToMany(targetEntity="\BlockStore\Tag")
+     */
+    private $tags;
 
     /**
      *
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->last_updated = new \DateTime();
         $this->created = new \DateTime();
         $this->data = json_encode(array());
         $this->name = "";
         $this->description = "";
         $this->github_url = "";
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
      * @param \DateTime $created
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
     }
 
     /**
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
     /**
      * @param \User $creator
      */
-    public function setCreator($creator)
-    {
+    public function setCreator($creator) {
         $this->creator = $creator;
     }
 
     /**
      * @return \User
      */
-    public function getCreator()
-    {
+    public function getCreator() {
         return $this->creator;
     }
 
     /**
      * @param string $description
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
     }
 
     /**
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
     /**
      * @param \DateTime $last_updated
      */
-    public function setLastUpdated($last_updated)
-    {
+    public function setLastUpdated($last_updated) {
         $this->last_updated = $last_updated;
     }
 
     /**
      * @return \DateTime
      */
-    public function getLastUpdated()
-    {
+    public function getLastUpdated() {
         return $this->last_updated;
     }
 
     /**
      * @param string $name
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
     }
 
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags() {
+        return $this->tags;
     }
 
     /**
      * @param array $data
      */
-    public function setData($data)
-    {
+    public function setData($data) {
         $this->data = json_encode($data);
     }
 
     /**
      * @return array
      */
-    public function getData()
-    {
+    public function getData() {
         return json_decode($this->data, true);
     }
-
 
     /**
      * @return array
      */
-    public function toArray()
-    {
+    public function toArray() {
+        $tags = array();
+
+        foreach ($this->getTags() as $tag) {
+            $tags[] = $tag->toArray();
+        }
+
         $array = array(
             "id" => $this->id,
             "name" => $this->name,
@@ -181,12 +180,11 @@ class BundleBlock extends \Model
             "creator" => $this->creator->toArray(),
             "last_updated" => $this->last_updated,
             "created" => $this->created,
-
+            "tags" => $tags
         );
         $data = $this->getData();
 
-        if (is_array($data))
-        {
+        if (is_array($data)) {
             $array = array_merge($array, $data);
         }
 
@@ -198,8 +196,7 @@ class BundleBlock extends \Model
      * @param array $params
      * @return BundleBlock[]
      */
-    static function all($params = array())
-    {
+    static function all($params = array()) {
         return parent::all($params);
     }
 
@@ -207,8 +204,7 @@ class BundleBlock extends \Model
      * @param Integer $id the id of the block
      * @return BundleBlock
      */
-    static function find($id)
-    {
+    static function find($id) {
         return parent::find($id);
     }
 
@@ -216,8 +212,7 @@ class BundleBlock extends \Model
      * @param array $where
      * @return BundleBlock[]
      */
-    static function where($where = array())
-    {
+    static function where($where = array()) {
         return parent::where($where);
     }
 
@@ -225,9 +220,7 @@ class BundleBlock extends \Model
      * @param array $options
      * @return BundleBlock[]
      */
-    static function search($options = array())
-    {
+    static function search($options = array()) {
         return parent::search($options);
     }
-
-} 
+}

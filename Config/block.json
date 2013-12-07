@@ -9,6 +9,14 @@
             "ws_origin": "/BlockStore/BundleBlocks",
             "model_location": "BlockStore/models/BundleBlock",
             "collection_location": "BlockStore/collections/BundleBlocks"
+        },
+        {
+            "model_name": "Tag",
+            "collection_name": "Tags",
+            "plural": "tags",
+            "ws_origin": "/BlockStore/Tags",
+            "model_location": "BlockStore/models/Tag",
+            "collection_location": "BlockStore/collections/Tags"
         }
     ],
     "apps": [
