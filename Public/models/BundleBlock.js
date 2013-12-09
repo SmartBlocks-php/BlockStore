@@ -7,7 +7,7 @@ define([
             name: '',
             description: ''
         },
-        urlRoot: "/BlockStore/Bundleblocks",
+        urlRoot: "/BlockStore/BundleBlocks",
         init: function () {
             var base = this;
             base.set("created", new Date());
